@@ -1,0 +1,28 @@
+PRAGMA foreign_keys = ON;
+
+CREATE TABLE IF NOT EXISTS country(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT UNIQUE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS city(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  country_id INTEGER NOT NULL,
+  lat REAL NOT NULL,
+  lon REAL NOT NULL,
+  hotel_price_per_night REAL NOT NULL,  -- € par nuit
+  FOREIGN KEY(country_id) REFERENCES country(id)
+);
+
+INSERT OR IGNORE INTO country(id,name) VALUES
+  (1,'Belgium'),(2,'France'),(3,'UK'),(4,'Italy'),(5,'USA'),(6,'Japan'),(7,'Spain');
+
+INSERT OR IGNORE INTO city(id,name,country_id,lat,lon,hotel_price_per_night) VALUES
+  (1,'Bruxelles',1,50.8503,4.3517,120.0),
+  (2,'Paris',2,48.8566,2.3522,150.0),
+  (3,'Londres',3,51.5074,-0.1278,160.0),
+  (4,'Rome',4,41.9028,12.4964,110.0),
+  (5,'New York',5,40.7128,-74.0060,220.0),
+  (6,'Tokyo',6,35.6762,139.6503,180.0),
+  (7,'Madrid',7,40.4168,-3.7038,100.0);

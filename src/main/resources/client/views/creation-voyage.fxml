@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="client.controllers.CreationVoyageController"
+      spacing="12">
+    <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+
+    <!-- En-tête -->
+    <Label text="Définir son voyage" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+    <!-- Ligne 1 : nom / date -->
+    <HBox spacing="12">
+        <TextField fx:id="nomVoyageField" promptText="Nom du voyage" HBox.hgrow="ALWAYS"/>
+        <Label text="Date de début :"/>
+        <DatePicker fx:id="dateDebutPicker"/>
+    </HBox>
+
+    <!-- Ligne 2 : départ / destination -->
+    <HBox spacing="12">
+        <Label text="Ville de départ :"/>
+        <ComboBox fx:id="villeDepartCombo" prefWidth="160"/>
+        <Label text="Destination :"/>
+        <ComboBox fx:id="destinationCombo" prefWidth="160"/>
+    </HBox>
+
+    <!-- Ligne 3 : vitesse / attente / prix/km -->
+    <HBox spacing="12" alignment="CENTER_LEFT">
+        <Label text="Vitesse (km/h) :"/>
+        <ToggleGroup fx:id="vitesseToggle"/>
+        <ToggleButton text="600" toggleGroup="$vitesseToggle" userData="600" selected="true"/>
+        <ToggleButton text="800" toggleGroup="$vitesseToggle" userData="800"/>
+        <ToggleButton text="900" toggleGroup="$vitesseToggle" userData="900"/>
+
+        <Label text="Attente (min) :"/>
+        <Spinner fx:id="attenteSpinner" prefWidth="90"/>
+
+        <Label text="Prix/km (€) :"/>
+        <ComboBox fx:id="prixKmCombo" prefWidth="100"/>
+    </HBox>
+
+    <!-- Résumé des infos générales -->
+    <Label fx:id="infosVoyageLabel" text="0,00 km, 0,00 heures, 0,00 euros"/>
+
+    <Separator/>
+
+    <!-- Conteneur étapes -->
+    <VBox fx:id="stepsContainer" spacing="8"/>
+
+    <!-- Actions + totaux -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Ajouter une étape avion" onAction="#ajouterEtapeAvion"/>
+        <Button text="Ajouter une étape hôtel" onAction="#ajouterEtapeHotel"/>
+        <Pane HBox.hgrow="ALWAYS"/>
+        <Label fx:id="totauxLabel" text="0,00 km, 0,00 heures, 0,00 euros"/>
+        <Button text="Valider" onAction="#validerVoyage"

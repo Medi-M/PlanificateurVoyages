@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="client.controllers.HotelStepController"
+      spacing="6" style="-fx-border-color: #ccc; -fx-border-width: 1; -fx-padding: 8;">
+
+    <Label fx:id="titreLabel" style="-fx-font-weight: bold;" text="Hôtel"/>
+
+    <GridPane fx:id="contentArea" hgap="8" vgap="8">
+        <padding><Insets top="4" right="4" bottom="4" left="4"/></padding>
+
+        <Label text="Nombre de chambres:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <Spinner fx:id="chambresSpinner" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Nombre de nuits:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <Spinner fx:id="nuitsSpinner" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <Label fx:id="resumeLabel" text="0 chambre × 0 nuit = 0,00 €"/>
+
+    <HBox spacing="8">
+        <Button text="Réduire/Agrandir" onAction="#toggleCollapsed"/>
+        <Button text="Supprimer" onAction="#removeSelf"/>
+    </HBox>
+</VBox>
